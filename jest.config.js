@@ -1,4 +1,5 @@
 module.exports = {
+  rootDir: './',
   collectCoverage: true,
   // on node 14.x coverage provider v8 offers good speed and more or less good report
   coverageProvider: 'v8',
@@ -10,6 +11,7 @@ module.exports = {
     '!<rootDir>/.next/**',
     '!<rootDir>/*.config.js',
     '!<rootDir>/coverage/**',
+    '!<rootDir>/jest.setup.js',
   ],
   moduleNameMapper: {
     // Handle CSS imports (with CSS modules)
@@ -24,7 +26,7 @@ module.exports = {
     '^.+\\.(png|jpg|jpeg|gif|webp|avif|ico|bmp|svg)$/i': `<rootDir>/__mocks__/fileMock.js`,
 
     // Handle module aliases
-    '^@/components/(.*)$': '<rootDir>/components/$1',
+    '^@/(.*)$': '<rootDir>/src/$1',
   },
   // Add more setup options before each test is run
   // setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
@@ -36,4 +38,5 @@ module.exports = {
     '^.+\\.(js|jsx|ts|tsx)$': ['babel-jest', { presets: ['next/babel'] }],
   },
   transformIgnorePatterns: ['/node_modules/', '^.+\\.module\\.(css|sass|scss)$'],
+  preset: 'ts-jest',
 };
