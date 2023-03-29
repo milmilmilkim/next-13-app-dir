@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import styled from 'styled-components';
 import Link from 'next/link';
@@ -8,8 +8,12 @@ const Nav: React.FC = () => {
     <>
       <StyledTitle>
         <ul>
-          <li><Link href="/">home</Link></li>
-          <li><Link href="/about">about</Link></li>
+          <li>
+            <Link href="/">home</Link>
+          </li>
+          <li>
+            <Link href="/about">about</Link>
+          </li>
         </ul>
       </StyledTitle>
     </>

@@ -1,4 +1,9 @@
+import Test from '@/components/Test';
 
 export default function Home() {
-  return <div>메인페이지</div>;
+  return (
+    <div>
+      <Test />
+    </div>
+  );
 }
