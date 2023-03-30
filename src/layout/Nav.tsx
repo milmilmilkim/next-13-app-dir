@@ -1,7 +1,7 @@
 'use client';
 
-import styled from 'styled-components';
 import Link from 'next/link';
+import tw from 'tailwind-styled-components';
 
 const Nav: React.FC = () => {
   return (
@@ -20,8 +20,12 @@ const Nav: React.FC = () => {
   );
 };
 
-const StyledTitle = styled.h1`
-  background-color: tomato;
-`;
+const StyledTitle = tw.h1`
+flex
+items-center
+justify-center
+flex-col
+w-full
+bg-indigo-600`;
 
 export default Nav;
