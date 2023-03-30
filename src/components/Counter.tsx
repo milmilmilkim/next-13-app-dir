@@ -1,5 +1,7 @@
+'use client';
+
 import { useState, useCallback } from 'react';
-import tw, { TwStyle } from 'twin.macro';
+import tw from 'twin.macro';
 import styled from 'styled-components';
 
 const Counter = () => {
