@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useCallback } from 'react';
-import tw from 'twin.macro';
 import styled from 'styled-components';
 
 const Counter = () => {
@@ -21,7 +20,7 @@ const Counter = () => {
 
   return (
     <StyledCounter>
-      <h1>테스트 컴포넌트</h1>
+      <h1 className="bg-indigo-600">테스트 컴포넌트</h1>
       <br />
       {number}
       <hr />
@@ -32,7 +31,6 @@ const Counter = () => {
 };
 
 const StyledCounter = styled.div`
-  ${tw`rounded-lg shadow-lg`}
   width: 300px;
 `;
 
