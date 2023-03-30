@@ -1,6 +1,8 @@
 import './globals.css';
 import StyledComponentsRegistry from '../lib/registry';
 
+import tw from 'tailwind-styled-components';
+
 import Nav from '@/layout/Nav';
 
 export const metadata = {
@@ -13,10 +15,24 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html>
       <body>
         <StyledComponentsRegistry>
-          <Nav />
-          {children}
+          <Container>
+            <Nav />
+            <Content>{children}</Content>
+          </Container>
         </StyledComponentsRegistry>
       </body>
     </html>
   );
 }
+
+const Container = tw.div`
+container mx-auto 
+shadow	
+my-7
+h-auto
+`;
+
+const Content = tw.div`
+px-3
+py-3
+`;

@@ -7,11 +7,11 @@ const Nav: React.FC = () => {
   return (
     <>
       <StyledTitle>
-        <ul>
-          <li>
+        <ul className="flex flex-row">
+          <li className="px-2">
             <Link href="/">home</Link>
           </li>
-          <li>
+          <li className="px-2">
             <Link href="/about">about</Link>
           </li>
         </ul>
@@ -22,10 +22,11 @@ const Nav: React.FC = () => {
 
 const StyledTitle = tw.h1`
 flex
-items-center
 justify-center
 flex-col
 w-full
-bg-indigo-600`;
+h-14 bg-gradient-to-r from-violet-500 to-fuchsia-500
+
+`;
 
 export default Nav;
