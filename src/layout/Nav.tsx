@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 const Nav = () => {
   return (
-    <nav className="bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 py-2">
+    <nav className="max-w-screen-xl mx-auto px-4">
       <ul className="flex justify-start space-x-4 pl-4">
         <li className="text-white">
           <Link href="/">home</Link>

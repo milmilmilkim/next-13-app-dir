@@ -19,7 +19,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <StyledComponentsRegistry>
           <Header />
           <Container>
-            <Nav />
             <Content>{children}</Content>
           </Container>
           <Footer />
