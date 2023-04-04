@@ -6,6 +6,7 @@
 - typescript
 - styled components
 - tailwind css
+- tanstack query (react-query v4)
 
 ## 테스트
 - jest + react test library

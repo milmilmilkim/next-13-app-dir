@@ -1,12 +1,20 @@
-import { render, screen } from '@testing-library/react';
-import Test from '@/components/Test';
+import { render, fireEvent } from '@testing-library/react';
+import Counter from '@/components/Counter';
 
-import '@testing-library/jest-dom';
+describe('Counter 컴포넌트 테스트', () => {
+  it('숫자가 1씩 증가한다.', () => {
+    const { getByText } = render(<Counter />);
+    const button = getByText('+');
+    fireEvent.click(button);
+    const result = getByText('1');
+    expect(result).toBeInTheDocument();
+  });
 
-describe('Home', () => {
-  it('그냥 이 컴포넌트를 렌더링한다', () => {
-    const { getByText } = render(<Test />);
-
-    expect(getByText('테스트 컴포넌트')).toBeInTheDocument();
+  it('숫자가 1씩 감소한다.', () => {
+    const { getByText } = render(<Counter />);
+    const button = getByText('-');
+    fireEvent.click(button);
+    const result = getByText('-1');
+    expect(result).toBeInTheDocument();
   });
 });

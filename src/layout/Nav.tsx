@@ -1,27 +1,20 @@
 'use client';
 
-import styled from 'styled-components';
 import Link from 'next/link';
 
-const Nav: React.FC = () => {
+const Nav = () => {
   return (
-    <>
-      <StyledTitle>
-        <ul>
-          <li>
-            <Link href="/">home</Link>
-          </li>
-          <li>
-            <Link href="/about">about</Link>
-          </li>
-        </ul>
-      </StyledTitle>
-    </>
+    <nav className="max-w-screen-xl mx-auto px-4">
+      <ul className="flex justify-start space-x-4 pl-4">
+        <li className="text-white">
+          <Link href="/">home</Link>
+        </li>
+        <li className="text-white">
+          <Link href="/about">about</Link>
+        </li>
+      </ul>
+    </nav>
   );
 };
-
-const StyledTitle = styled.h1`
-  background-color: tomato;
-`;
 
 export default Nav;
