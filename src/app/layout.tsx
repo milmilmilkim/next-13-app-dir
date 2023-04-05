@@ -4,8 +4,9 @@ import StyledComponentsRegistry from '../lib/registry';
 import tw from 'tailwind-styled-components';
 
 import Header from '@/layout/Header';
-import Nav from '@/layout/Nav';
 import Footer from '@/layout/Footer';
+
+import theme from '@/styles/theme';
 
 export const metadata = {
   title: '나의 넥스트앱',
