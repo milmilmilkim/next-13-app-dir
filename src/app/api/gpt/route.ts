@@ -20,9 +20,11 @@ const getResponse = async () => {
   return choices;
 };
 
-export async function GET(request: Request) {
+export async function POST(request: Request) {
   try {
-    const choices = await getResponse();
+    const {body} = request;
+
+    const choices = await getResponse(body.prompt);
     return NextResponse.json(choices);
   } catch (err) {
     console.error(err);
