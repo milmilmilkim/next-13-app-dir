@@ -5,27 +5,30 @@ import { postGPT } from '@/api/gpt';
 import { GPTRequest } from '@/types/api/gpt';
 
 export async function POST(request: Request) {
-  let prompt = '';
+  let prompt = 'system: Write a novel in dialogue form, including directives. Follow the character format below';
   let context = '';
+  let character = '';
 
   try {
     const req = await request.json();
     context = req.context;
+    character = req.character;
   } catch (err) {
-    context = '';
+    console.error(err);
   }
+
+  prompt += character;
+
+  prompt += 'write in korean';
 
   if (context) {
     prompt += context;
     prompt += 'keep going';
-  } else {
-    prompt =
-      'system: Write a novel in dialogue form, including directives. Follow the character format below name: sori kim, job: frontend developer wirte in korean';
   }
 
   const GPTRequest: GPTRequest = {
     messages: [{ role: 'system', content: prompt }],
-    maxTokens: 200,
+    maxTokens: 500,
   };
 
   const choices = await postGPT(GPTRequest);
