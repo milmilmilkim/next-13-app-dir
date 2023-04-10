@@ -9,6 +9,6 @@ const Footer = () => {
 };
 
 const StyledFooter = tw.footer`
-w-full bg-gray-900 text-white text-center p-4 absolute bottom-0
+w-full bg-gray-900 text-white text-center p-4
 `;
 export default Footer;
