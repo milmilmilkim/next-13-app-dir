@@ -1,14 +1,14 @@
-interface Character {
+export interface Character {
   name: string;
   age: number;
   gender: string;
   description: string;
-  appearance: string[];
-  job: string;
-  personality: string[];
+  job?: string;
+  personality?: string[];
 }
 
-interface ExtendedCharacter extends Character {
+export interface ExtendedCharacter extends Character {
+  appearance: string[];
   sampleDialogue?: string[];
   relationship?: string;
   sexuality?: string;

@@ -12,6 +12,10 @@ const Nav = () => {
         <li className="text-white">
           <Link href="/story">story generator</Link>
         </li>
+
+        <li className="text-white">
+          <Link href="/settings">settings</Link>
+        </li>
       </ul>
     </nav>
   );

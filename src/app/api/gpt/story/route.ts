@@ -4,20 +4,26 @@ import { NextResponse } from 'next/server';
 import { postGPT } from '@/api/gpt';
 import { GPTRequest } from '@/types/api/gpt';
 
+import { Character } from '@/types/data/character';
+
 export async function POST(request: Request) {
   let prompt = 'system: Write a novel in dialogue form, including directives. Follow the character format below';
+
   let context = '';
-  let character = '';
+  let characters: Character[] = [];
+  let maxTokens = 200;
 
   try {
     const req = await request.json();
+
     context = req.context;
-    character = req.character;
+    characters = req.characters;
+    maxTokens = req.maxTokens;
   } catch (err) {
     console.error(err);
   }
 
-  prompt += character;
+  prompt += characters.map((character) => JSON.stringify(character)).join(',');
 
   prompt += 'write in korean';
 
@@ -26,11 +32,21 @@ export async function POST(request: Request) {
     prompt += 'keep going';
   }
 
+  prompt += `When the story is over, say: ###end##`;
+
   const GPTRequest: GPTRequest = {
     messages: [{ role: 'system', content: prompt }],
-    maxTokens: 500,
+    maxTokens,
+    stop: '###end###',
   };
 
-  const choices = await postGPT(GPTRequest);
+  console.time('gpttime');
+  console.log('start');
+  const { choices } = await postGPT(GPTRequest);
+
+  console.timeEnd('gpttime');
+  console.log('----------');
+  // TODO: token 등의 검증 로직
+
   return NextResponse.json(choices);
 }

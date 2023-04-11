@@ -17,11 +17,11 @@ export const postGPT = async (gptRequest: GPTRequest, apiKey = OPENAI_KEY) => {
     messages: [{ role: messages[0].role, content: messages[0].content }],
     max_tokens: maxTokens,
     user,
-    // temperature,
+    temperature,
     // presence_penalty: presencePenalty,
     // frequency_penalty: frequencyPenalty,
     // stop,
   });
 
-  return data.choices;
+  return data;
 };

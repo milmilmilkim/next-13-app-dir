@@ -6,7 +6,11 @@ import tw from 'tailwind-styled-components';
 import Header from '@/layout/Header';
 import Footer from '@/layout/Footer';
 
-import theme from '@/styles/theme';
+import Providers from '@/lib/provider';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+
+const queryClient = new QueryClient();
 
 export const metadata = {
   title: '나의 넥스트앱',
@@ -18,11 +22,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html>
       <body>
         <StyledComponentsRegistry>
-          <Header />
-          <Container>
-            <Content>{children}</Content>
-          </Container>
-          <Footer />
+          <Providers>
+            <ReactQueryDevtools initialIsOpen={true} />
+            <Header />
+            <Container>
+              <Content>{children}</Content>
+            </Container>
+            <Footer />
+          </Providers>
         </StyledComponentsRegistry>
       </body>
     </html>
