@@ -1,7 +1,9 @@
 import { atom } from 'jotai';
 import { StoryRequest } from '@/types/data/story';
 
-const storyAtom = atom('');
+const storyAtom = atom<string>('');
+
+const storyIdAtom = atom<string>('');
 
 const storyRequestAtom = atom<StoryRequest>({
   characters: [],
@@ -14,4 +16,4 @@ const storyRequestAtom = atom<StoryRequest>({
   },
 });
 
-export { storyAtom, storyRequestAtom };
+export { storyAtom, storyRequestAtom, storyIdAtom };

@@ -32,6 +32,7 @@ export async function POST(request: Request) {
     prompt += 'keep going';
   }
 
+  // prompt += 'just write 1 lines (1 character)';
   prompt += `When the story is over, say: ###end##`;
 
   const GPTRequest: GPTRequest = {

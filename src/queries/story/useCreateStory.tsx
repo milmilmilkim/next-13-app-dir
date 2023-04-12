@@ -11,6 +11,9 @@ const useCreateStory = (storyRequest: StoryRequest) => {
   };
 
   const query = useQuery(['story', storyRequest], postStoryOptions, {
+    onSettled: () => {
+      console.log(storyRequest);
+    },
     onSuccess: () => console.log('ok'),
     enabled: false, // 초기에는 API 요청을 보내지 않음
   });

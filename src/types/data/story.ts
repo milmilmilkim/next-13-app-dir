@@ -7,7 +7,7 @@ export interface StoryRequest {
   //   worldView: string;
   characters: Character[];
   context?: string;
-  options?: StoryRequestOptions;
+  options: StoryRequestOptions;
 }
 
 interface StoryRequestOptions {

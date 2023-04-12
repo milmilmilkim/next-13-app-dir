@@ -18,8 +18,8 @@ export const postGPT = async (gptRequest: GPTRequest, apiKey = OPENAI_KEY) => {
     max_tokens: maxTokens,
     user,
     temperature,
-    // presence_penalty: presencePenalty,
-    // frequency_penalty: frequencyPenalty,
+    presence_penalty: presencePenalty,
+    frequency_penalty: frequencyPenalty,
     // stop,
   });
 

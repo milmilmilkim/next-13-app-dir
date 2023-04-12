@@ -3,7 +3,7 @@
 import { ChangeEvent, useState, useEffect } from 'react';
 import { useAtom } from 'jotai';
 import { characterAtom } from '@/state/character';
-import { storyAtom } from '@/state/story';
+import { storyAtom, storyRequestAtom } from '@/state/story';
 import useStory from '@/queries/story/useCreateStory';
 import StoryArea from '@/components/story/StoryArea';
 import { useQueryClient } from '@tanstack/react-query';
@@ -13,6 +13,7 @@ import tw from 'tailwind-styled-components';
 const Story = () => {
   const [context, setContext] = useState('');
   const [character, setCharacter] = useAtom(characterAtom);
+  const [storyRequest, setStoryRequest] = useAtom(storyRequestAtom);
   const [story, setStory] = useAtom(storyAtom);
 
   const { refetch, data, isFetching, error } = useStory({
@@ -25,6 +26,7 @@ const Story = () => {
       },
     ],
     context,
+    options: storyRequest.options,
   });
 
   const queryClient = useQueryClient();
@@ -70,6 +72,8 @@ const Story = () => {
     <div>
       <h1 className="text-3xl font-bold underline">Story Generator</h1>
       <textarea className="w-full border" onChange={haldeCharacter} value={character}></textarea>
+
+      {JSON.stringify(storyRequest)}
 
       <Styledbutton disabled={isFetching} onClick={getResponse}>
         start!
