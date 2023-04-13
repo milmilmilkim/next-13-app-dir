@@ -12,7 +12,6 @@ export interface Choices {
 }
 
 export interface GPTRequest {
-  messages: Message[];
   temperature?: number;
   presencePenalty?: number;
   frequencyPenalty?: number;
