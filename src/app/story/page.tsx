@@ -2,92 +2,54 @@
 
 import { ChangeEvent, useState, useEffect } from 'react';
 import { useAtom } from 'jotai';
-import { characterAtom } from '@/state/character';
-import { storyAtom, storyRequestAtom } from '@/state/story';
-import useStory from '@/queries/story/useCreateStory';
+import axios from '@/api/axios';
+import { storyRequestOptionsAtom } from '@/state/story';
+import { charactersAtom } from '@/state/character';
 import StoryArea from '@/components/story/StoryArea';
-import { useQueryClient } from '@tanstack/react-query';
-
 import tw from 'tailwind-styled-components';
 
 const Story = () => {
+  const [storyRequestOptions, setStoryRequestOptions] = useAtom(storyRequestOptionsAtom);
+  const [characters] = useAtom(charactersAtom);
+  const [isLoading, setIsLoading] = useState(false);
   const [context, setContext] = useState('');
-  const [character, setCharacter] = useAtom(characterAtom);
-  const [storyRequest, setStoryRequest] = useAtom(storyRequestAtom);
-  const [story, setStory] = useAtom(storyAtom);
 
-  const { refetch, data, isFetching, error } = useStory({
-    characters: [
-      {
-        name: 'milmil',
-        age: 27,
-        gender: 'female',
-        description: character,
-      },
-    ],
-    context,
-    options: storyRequest.options,
-  });
+  const start = async () => {
+    setIsLoading(true);
+    try {
+      const { data } = await axios.post('/api/gpt/story', {
+        characters: characters.map((character) => {
+          const { id, ...rest } = character;
+          return rest;
+        }),
+        context,
+        options: storyRequestOptions,
+      });
 
-  const queryClient = useQueryClient();
+      console.log(data);
 
-  const getResponse = () => {
-    refetch();
+      setContext((context) => {
+        const next: string = data[0].message.content;
+        console.log(next);
+        return context + next;
+      });
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setIsLoading(false);
+    }
   };
-
-  const handleNext = () => {
-    getResponse();
-  };
-
-  const haldeCharacter = (e: ChangeEvent) => {
-    const target = e.currentTarget as HTMLTextAreaElement;
-    setCharacter(target.value);
-  };
-
-  const reset = () => {
-    setContext('');
-    setCharacter('');
-    queryClient.removeQueries(['story']);
-  };
-
-  const cancel = () => {
-    queryClient.cancelQueries(['story']);
-  };
-
-  useEffect(() => {
-    const nextContext = data?.data[0].message.content;
-    if (!nextContext) return;
-    setContext((context) => context + nextContext);
-  }, [data]);
-
-  useEffect(() => {
-    return () => {
-      if (context) {
-        setStory(context);
-      }
-    };
-  }, [context, setStory]);
 
   return (
     <div>
       <h1 className="text-3xl font-bold underline">Story Generator</h1>
-      <textarea className="w-full border" onChange={haldeCharacter} value={character}></textarea>
-
-      {JSON.stringify(storyRequest)}
-
-      <Styledbutton disabled={isFetching} onClick={getResponse}>
+      <Styledbutton onClick={start} disabled={isLoading}>
         start!
       </Styledbutton>
-      <Styledbutton disabled={!isFetching} onClick={cancel}>
-        cancel!
-      </Styledbutton>
-      <Styledbutton disabled={isFetching} onClick={reset}>
-        reset!
-      </Styledbutton>
-      <StoryArea story={context} isLoading={isFetching} error={error} />
-      <Styledbutton disabled={isFetching} onClick={handleNext}>
-        next!
-      </Styledbutton>
+      <Styledbutton>cancel!</Styledbutton>
+      <Styledbutton>reset!</Styledbutton>
+      <StoryArea story={context} isLoading={false} error={false} />
+      <Styledbutton>next!</Styledbutton>
     </div>
   );
 };

@@ -9,6 +9,11 @@ const Nav = () => {
         <li className="text-white">
           <Link href="/">home</Link>
         </li>
+
+        <li className="text-white">
+          <Link href="/character">character setting</Link>
+        </li>
+
         <li className="text-white">
           <Link href="/story">story generator</Link>
         </li>

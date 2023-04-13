@@ -21,14 +21,9 @@ const getResponse = async (message = '안녕하세요') => {
   return choices;
 };
 
-export async function POST(request: NextApiRequest) {
+export async function GET() {
   try {
-    const body = request.body;
-
-    const { message = '안녕하세요' } = body;
-
-    const choices = await getResponse(message);
-    return NextResponse.json(choices);
+    return NextResponse.json({ message: 'hello' });
   } catch (err) {
     console.error(err);
   }

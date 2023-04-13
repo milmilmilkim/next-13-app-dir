@@ -1,10 +1,10 @@
 'use client';
 
 import { useAtom } from 'jotai';
-import { storyRequestAtom } from '@/state/story';
+import { storyRequestOptionsAtom } from '@/state/story';
 
 const Settings = () => {
-  const [storyRequest, setStoryRequest] = useAtom(storyRequestAtom);
+  const [storyRequestOptions, setStoryRequestOptions] = useAtom(storyRequestOptionsAtom);
 
   const handleRange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = parseFloat(e.currentTarget.value);
@@ -15,13 +15,10 @@ const Settings = () => {
 
   const setProperty = (propertyName: string, newValue: number | string) => {
     const next = {
-      ...storyRequest,
-      options: {
-        ...storyRequest.options,
-        [propertyName]: newValue,
-      },
+      ...storyRequestOptions,
+      [propertyName]: newValue,
     };
-    setStoryRequest(next);
+    setStoryRequestOptions(next);
   };
 
   const properties = [
@@ -67,12 +64,12 @@ const Settings = () => {
             name={property.name}
             min={property.min}
             max={property.max}
-            value={storyRequest.options[property.name as keyof typeof storyRequest.options]}
+            value={storyRequestOptions[property.name as keyof typeof storyRequestOptions]}
             step={property.step}
             onChange={handleRange}
             className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
           ></input>
-          <span>{storyRequest.options[property.name as keyof typeof storyRequest.options]}</span>
+          <span>{storyRequestOptions[property.name as keyof typeof storyRequestOptions]}</span>
         </div>
       ))}
     </div>

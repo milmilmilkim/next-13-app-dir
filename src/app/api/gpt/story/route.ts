@@ -26,10 +26,11 @@ export async function POST(request: Request) {
     prompt += characters.map((character) => JSON.stringify(character)).join(',');
 
     messages.push({ role: 'system', content: prompt });
+    messages.push({ role: 'system', content: 'write in korean' });
 
     if (context) {
       messages.push({ role: 'assistant', content: context });
-      messages.push({ role: 'user', content: 'keep going' });
+      messages.push({ role: 'system', content: 'keep going' });
     }
 
     console.time('time');

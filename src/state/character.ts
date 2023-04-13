@@ -1,5 +1,6 @@
-import { atom } from 'jotai';
+import { Character } from '@/types/data/character';
+import { atomWithStorage } from 'jotai/utils';
 
-const characterAtom = atom('');
+const charactersAtom = atomWithStorage<Character[]>('characters', []);
 
-export { characterAtom };
+export { charactersAtom };

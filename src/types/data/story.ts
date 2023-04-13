@@ -10,7 +10,7 @@ export interface StoryRequest {
   options: StoryRequestOptions;
 }
 
-interface StoryRequestOptions {
+export interface StoryRequestOptions {
   temperature?: number;
   presencePenalty?: number;
   frequencyPenalty?: number;
