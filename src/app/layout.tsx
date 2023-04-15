@@ -1,3 +1,4 @@
+import 'nes.css/css/nes.min.css';
 import './globals.css';
 import StyledComponentsRegistry from '../lib/registry';
 
@@ -7,10 +8,7 @@ import Header from '@/layout/Header';
 import Footer from '@/layout/Footer';
 
 import Providers from '@/lib/provider';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-
-const queryClient = new QueryClient();
 
 export const metadata = {
   title: '나의 넥스트앱',

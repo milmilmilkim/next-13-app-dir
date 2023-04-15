@@ -46,6 +46,7 @@ const Story = () => {
       <Styledbutton onClick={start} disabled={isLoading}>
         start!
       </Styledbutton>
+      <button className="nes-btn is-primary">메롱메롱메롱메롱</button>
       <Styledbutton>cancel!</Styledbutton>
       <Styledbutton>reset!</Styledbutton>
       <StoryArea story={context} isLoading={false} error={false} />
@@ -57,5 +58,5 @@ const Story = () => {
 export default Story;
 
 const Styledbutton = tw.button`
-bg-pink-500 disabled:bg-pink-200 border rounded-md text-white px-2 py-1
+nes-btn is-primary
 `;
