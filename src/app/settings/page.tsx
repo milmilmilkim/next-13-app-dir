@@ -53,6 +53,10 @@ const Settings = () => {
       <h1 className="text-lg">settings..</h1>
       <hr className="my-1" />
 
+      <p>gpt 3.5 모델의 설정을 변경합니다. 자세한 내용은 open ai 공식 문서를 참고하세요.</p>
+
+      <br />
+
       {properties.map((property) => (
         <div key={property.name}>
           <label htmlFor="minmax-range" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">

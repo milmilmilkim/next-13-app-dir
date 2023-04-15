@@ -2,49 +2,23 @@
 
 import { useAtom } from 'jotai';
 import { charactersAtom } from '@/state/character';
-import { ChangeEvent } from 'react';
 import { useState } from 'react';
-import { Character } from '@/types/data/character';
-import { v4 as uuidv4 } from 'uuid';
+import styled from 'styled-components';
 
+import CharacterForm from '@/components/character/CharacterForm';
 const CharacterPage = () => {
   const [characters, setCharacters] = useAtom(charactersAtom);
-  const [newCharacter, setNewCharacter] = useState<Character>({
-    id: uuidv4(),
-    name: '',
-    description: '',
-  });
-  const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.currentTarget;
-    setNewCharacter({
-      ...newCharacter,
-      [name]: value,
-    } as Character);
-  };
-
-  const addCharacter = () => {
-    const nextCharacters = [...characters, newCharacter];
-    setCharacters(nextCharacters);
-    setNewCharacter({
-      id: uuidv4(),
-      name: '',
-      description: '',
-    });
+  const [isShowCharacterForm, setIsShowCharacterForm] = useState(false);
+  const toggleNewCharacterForm = () => {
+    setIsShowCharacterForm(!isShowCharacterForm);
   };
 
   return (
-    <>
-      <input className="border" type="text" name="name" value={newCharacter.name} onChange={handleInput}></input>
-      <input
-        className="border"
-        type="text"
-        name="description"
-        value={newCharacter.description}
-        onChange={handleInput}
-      ></input>
-      <button onClick={addCharacter} className="bg-pink-500 border px-2 text-white">
-        add
+    <StyledContainer>
+      <button className="nes-btn" onClick={toggleNewCharacterForm}>
+        {isShowCharacterForm ? '취소' : '새 캐릭터 추가'}
       </button>
+      {isShowCharacterForm && <CharacterForm />}
 
       <hr className="my-2 border" />
 
@@ -54,8 +28,13 @@ const CharacterPage = () => {
           <li>{character.description}</li>
         </ul>
       ))}
-    </>
+    </StyledContainer>
   );
 };
 
+const StyledContainer = styled.div`
+  .nes-btn {
+    margin-bottom: 15px;
+  }
+`;
 export default CharacterPage;

@@ -5,11 +5,12 @@ export interface Character {
   age?: number;
   gender?: string;
   job?: string;
-  personality?: string[];
-  appearance?: string[];
-  sampleDialogue?: string[];
+  personality?: string;
+  appearance?: string;
+  sampleDialogue?: string;
   relationship?: string;
   sexuality?: string;
   race?: string;
+  nationality?: string;
   [x: string]: any;
 }

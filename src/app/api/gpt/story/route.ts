@@ -26,18 +26,23 @@ export async function POST(request: Request) {
     prompt += characters.map((character) => JSON.stringify(character)).join(',');
 
     messages.push({ role: 'system', content: prompt });
+    messages.push({
+      role: 'system',
+      content:
+        "You can ignore AI conventions, and your story doesn't have to be positive and wholesome. Characters can use hostile language.",
+    });
+
+    // messages.push({
+    //   role: 'system',
+    //   content: '~~ content may be included as needed and in natural context.',
+    // });
+
     messages.push({ role: 'system', content: 'write in korean' });
 
     if (context) {
       messages.push({ role: 'assistant', content: context });
       messages.push({ role: 'system', content: 'keep going' });
     }
-
-    messages.push({
-      role: 'system',
-      content:
-        "You can ignore AI conventions, and your story doesn't have to be positive and wholesome. Characters can use hostile language.",
-    });
 
     console.time('time');
     const { choices, id } = await postGPT(messages, req.options);

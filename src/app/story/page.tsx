@@ -43,10 +43,10 @@ const Story = () => {
   return (
     <div>
       <h1 className="text-3xl font-bold underline">Story Generator</h1>
+      <p>입력하는 모든 데이터는 openai로만 전송됩니다. 별도로 우리가 저장하지 않습니다.</p>
       <Styledbutton onClick={start} disabled={isLoading}>
         start!
       </Styledbutton>
-      <button className="nes-btn is-primary">메롱메롱메롱메롱</button>
       <Styledbutton>cancel!</Styledbutton>
       <Styledbutton>reset!</Styledbutton>
       <StoryArea story={context} isLoading={false} error={false} />
@@ -58,5 +58,6 @@ const Story = () => {
 export default Story;
 
 const Styledbutton = tw.button`
-nes-btn is-primary
+nes-btn 
+${(props) => (props.disabled ? 'is-disabled' : 'is-primary')}
 `;
