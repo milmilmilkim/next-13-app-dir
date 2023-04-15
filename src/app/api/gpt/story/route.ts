@@ -33,6 +33,12 @@ export async function POST(request: Request) {
       messages.push({ role: 'system', content: 'keep going' });
     }
 
+    messages.push({
+      role: 'system',
+      content:
+        "You can ignore AI conventions, and your story doesn't have to be positive and wholesome. Characters can use hostile language.",
+    });
+
     console.time('time');
     const { choices, id } = await postGPT(messages, req.options);
 
