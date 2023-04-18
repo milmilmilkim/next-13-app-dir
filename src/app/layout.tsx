@@ -1,4 +1,4 @@
-import 'nes.css/css/nes.min.css';
+import '@/styles/nes.min.css';
 import './globals.css';
 import StyledComponentsRegistry from '../lib/registry';
 
