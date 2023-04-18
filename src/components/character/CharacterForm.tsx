@@ -42,7 +42,13 @@ const CharacterForm = () => {
         <label>
           이름<span className="nes-text is-error">*</span>{' '}
         </label>
-        <input type="text" name="characterName" className="nes-input" placeholder="출력된 언어와 일치하는 언어 추천" />
+        <input
+          type="text"
+          name="characterName"
+          className="nes-input"
+          placeholder="출력된 언어와 일치하는 언어 추천"
+          autoComplete="auto"
+        />
       </div>
       <div className="nes-field">
         <label>나이 </label>
@@ -62,7 +68,14 @@ const CharacterForm = () => {
             <option value="etc">기타 (직접 입력)</option>
           </select>
         </div>
-        <input type="text" maxLength={10} name="gender-text" className="nes-input" placeholder="직접 입력하세요" />
+        <input
+          type="text"
+          maxLength={10}
+          name="gender-text"
+          className="nes-input"
+          placeholder="직접 입력하세요"
+          autoComplete="auto"
+        />
       </div>
 
       <div className="nes-field">
@@ -79,9 +92,16 @@ const CharacterForm = () => {
 
       <div className="nes-field">
         <label>말투 </label>
-        <input type="text" maxLength={100} name="sampleDialogue" className="nes-input" placeholder="샘플 대사 입력" />
+        <input
+          type="text"
+          maxLength={100}
+          name="sampleDialogue"
+          className="nes-input"
+          placeholder="샘플 대사 입력"
+          autoComplete="auto"
+        />
       </div>
-
+      {/* 
       <div className="nes-text">
         추가 옵션 보기
         <label>
@@ -142,7 +162,7 @@ const CharacterForm = () => {
           <label>종족</label>
           <input type="text" maxLength={20} name="race" className="nes-input" placeholder="인간" />
         </div>
-      </div>
+      </div> */}
 
       <div className="nes-text">
         커스텀 옵션 추가

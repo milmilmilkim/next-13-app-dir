@@ -7,7 +7,7 @@ const storyRequestOptionsAtom = atom<StoryRequestOptions>({
   temperature: 0.5,
   presencePenalty: 0,
   frequencyPenalty: 0,
-  maxTokens: 50,
+  maxTokens: 1000,
 });
 
 export { storyAtom, storyRequestOptionsAtom };

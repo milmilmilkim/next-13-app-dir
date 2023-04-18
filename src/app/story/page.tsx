@@ -43,7 +43,7 @@ const Story = () => {
   return (
     <div>
       <h1 className="text-3xl font-bold underline">Story Generator</h1>
-      <p>입력하는 모든 데이터는 openai로만 전송됩니다. 별도로 우리가 저장하지 않습니다.</p>
+      <p>입력하는 모든 데이터는 openai로만 전송됩니다. 별도로 제가 저장하지 않습니다.</p>
       <Styledbutton onClick={start} disabled={isLoading}>
         start!
       </Styledbutton>
